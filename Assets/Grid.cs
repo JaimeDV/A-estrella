@@ -7,6 +7,7 @@ public class Grid : MonoBehaviour
 
     public Transform startPosition;
     public LayerMask wallMask;
+    public LayerMask waterMask;
     public Vector2 worldSize;
     public float nodeRadius;
     public float distanceBetweenNodes;
@@ -37,14 +38,21 @@ public class Grid : MonoBehaviour
             for (int y = 0; y < gridSizeY; y++)
             {
                 Vector3 worldPoint = bottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);//Get the world co ordinates of the bottom left of the graph
-                bool Wall = true;
+                bool Wall = true; //it is backwards but it works, don't touch it
 
                 if (Physics.CheckSphere(worldPoint, nodeRadius, wallMask))
                 {
                     Wall = false;
                 }
 
-                nodeArray[x, y] = new Node(Wall, worldPoint, x, y);
+                bool Water = true;
+
+                if (Physics.CheckSphere(worldPoint, nodeRadius, waterMask))
+                {
+                    Water = false;
+                }
+
+                nodeArray[x, y] = new Node(Wall,Water, worldPoint, x, y);
             }
         }
     }
@@ -105,11 +113,15 @@ public class Grid : MonoBehaviour
         {
             foreach (Node n in nodeArray)
             {
-                if (n.isWall)
+                if (n.isNotWall)
                 {
                     Gizmos.color = Color.white;
                 }
-                else
+                if (!n.isNotWater)
+                {
+                    Gizmos.color = Color.blue;
+                }
+                if(!n.isNotWall)
                 {
                     Gizmos.color = Color.yellow;
                 }

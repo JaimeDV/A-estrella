@@ -7,7 +7,8 @@ public class Node {
     public int gridX;
     public int gridY;
 
-    public bool isWall;
+    public bool isNotWall;
+    public bool isNotWater;
     public Vector3 position;
 
     public Node parentNode;
@@ -17,9 +18,10 @@ public class Node {
 
     public int FCost { get { return igCost + ihCost; } }
 
-    public Node(bool isWall, Vector3 a_vPos, int gridX, int gridY)
+    public Node(bool isWall, bool isWater, Vector3 a_vPos, int gridX, int gridY)
     {
-        this.isWall = isWall;
+        this.isNotWall = isWall;
+        this.isNotWater = isWater;
         this.position = a_vPos;
         this.gridX = gridX;
         this.gridY = gridY;

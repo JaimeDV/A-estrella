@@ -49,12 +49,15 @@ public class S_Pathfinding : MonoBehaviour {
             foreach (Node NeighborNode in gridReference.GetNeighboringNodes(CurrentNode))
             {
                 //if i add water reconigcion it should be here
-                if (!NeighborNode.isWall || ClosedList.Contains(NeighborNode))
+                if (!NeighborNode.isNotWall || ClosedList.Contains(NeighborNode))
                 {
                     continue;
                 }
                 int MoveCost = CurrentNode.igCost + GetManhattenDistance(CurrentNode, NeighborNode);
-
+                if (!NeighborNode.isNotWater)//water is more expensive
+                {
+                    MoveCost *= 2;
+                }
                 if (MoveCost < NeighborNode.igCost || !OpenList.Contains(NeighborNode))
                 {
                     NeighborNode.igCost = MoveCost;
