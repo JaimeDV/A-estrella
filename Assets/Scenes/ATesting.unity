@@ -2356,8 +2356,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b567918c33e0b0744b7c1ff293b33aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosition: {fileID: 430606492}
-  targetPosition: {fileID: 1408906332}
+  gridReference: {fileID: 1787969239}
+  startPosition: {fileID: 430606488}
+  targetPosition: {fileID: 1408906328}
+  alternate: 0
+  MovingTarget: {fileID: 0}
+  waterMoveCost: 0
+  isDebug: 0
 --- !u!114 &1787969239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2374,12 +2379,19 @@ MonoBehaviour:
   wallMask:
     serializedVersion: 2
     m_Bits: 64
+  aditionalWallMask:
+    serializedVersion: 2
+    m_Bits: 0
   waterMask:
     serializedVersion: 2
     m_Bits: 144
   worldSize: {x: 30, y: 30}
   nodeRadius: 0.5
   distanceBetweenNodes: 0
+  gridSizeX: 0
+  gridSizeY: 0
+  alternate: 0
+  showGrid: 0
 --- !u!114 &1787969240
 MonoBehaviour:
   m_ObjectHideFlags: 0
